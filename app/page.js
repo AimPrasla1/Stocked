@@ -1,95 +1,120 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+    console.log("Email submitted:", email);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll(`.${styles.featureItem}, .${styles.useCaseItem}`);
+
+      sections.forEach((section) => {
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+            section.classList.add(styles.visible);
+          } else {
+            section.classList.remove(styles.visible);
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Run on mount to make sure visible elements are correctly displayed
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSignUp = () => {
+    const signUpSection = document.querySelector('.footer');
+    if (signUpSection) {
+      signUpSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      {/* Header Section */}
+      <header className={styles.header}>
+        <div className={styles.logo}>
+          <Image src="/logo-no-background.png" alt="Stocked Logo" width={150} height={40} />
         </div>
-      </div>
+        <nav className={styles.nav}>
+          <button className={styles.navButton}>Home</button>
+          <button className={styles.navButton}>Features</button>
+          <button className={styles.navButton}>Use Cases</button>
+        </nav>
+      </header>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <h1>Welcome to Stocked</h1>
+        <p>The future of inventory management, powered by AI.</p>
+        <button className={styles.signUpButton} onClick={scrollToSignUp}>Sign Up</button>
+      </section>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+      {/* Key Features Section */}
+      <section className={styles.features}>
+        <h2>Key Features</h2>
+        <div className={styles.featureItem}>
+          <h3>Inventory Tracking</h3>
+          <p>Monitor and adjust inventory levels to avoid stockouts.</p>
+        </div>
+        <div className={styles.featureItem}>
+          <h3>Seamless UI</h3>
+          <p>Analytics and charts to visualize stock levels.</p>
+        </div>
+        <div className={`${styles.featureItem} ${styles.aiFeature}`}>
+          <h3>AI Voice Recognition</h3>
+          <p>Add, update, or remove inventory using voice commands.</p>
+        </div>
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+      {/* Use Cases Section */}
+      <section className={styles.useCases}>
+        <h2>Use Cases</h2>
+        <div className={styles.useCaseGrid}>
+          <div className={styles.useCaseItem}>
+            <h3>Manufacturers</h3>
+            <p>Track materials and products from start to finish.</p>
+          </div>
+          <div className={styles.useCaseItem}>
+            <h3>Wholesalers</h3>
+            <p>Manage bulk inventory and streamline restocking processes.</p>
+          </div>
+          <div className={styles.useCaseItem}>
+            <h3>Retailers & E-commerce</h3>
+            <p>Stay on top of your stock levels across various platforms.</p>
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      {/* Footer Section */}
+      <footer className={styles.footer}>
+        <h2>So what are you waiting for?</h2>
+        <p>Sign up to be one of the first to access Stocked when it launches!</p>
+        <form onSubmit={handleEmailSubmit} className={styles.emailForm}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit">Sign Up</button>
+        </form>
+      </footer>
     </main>
   );
 }

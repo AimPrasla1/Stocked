@@ -48,7 +48,7 @@ export default function Home() {
       {/* Header Section */}
       <header className={styles.header}>
         <div className={styles.logo}>
-          <Image src="/logo-no-background.png" alt="Stocked Logo" width={150} height={40} />
+          <Image src="/logo.png" alt="Stocked Logo" width={150} height={40} />
         </div>
         <nav className={styles.nav}>
           <button className={styles.navButton}>Home</button>
@@ -59,27 +59,57 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className={styles.hero}>
-        <h1>Welcome to Stocked</h1>
-        <p>The future of inventory management, powered by AI.</p>
-        <button className={styles.signUpButton} onClick={scrollToSignUp}>Sign Up</button>
+        <div className={styles.heroText}>
+          <h1>Welcome to Stocked</h1>
+          <p>The future of inventory management, powered by <span className={styles.gradientText}>AI</span>.</p>
+          <div className={styles.buttonGroup}>
+            <button className={styles.signInButton}>Sign In</button>
+            <button className={styles.signUpButton} onClick={scrollToSignUp}>Sign Up</button>
+          </div>
+        </div>
+        <div className={styles.heroImage}>
+          <Image src="/homepage-Photoroom.png" alt="Stocked Hero Image" width={700} height={700} />
+        </div>
       </section>
+
+
 
       {/* Key Features Section */}
       <section className={styles.features}>
         <h2>Key Features</h2>
+        
         <div className={styles.featureItem}>
-          <h3>Inventory Tracking</h3>
-          <p>Monitor and adjust inventory levels to avoid stockouts.</p>
+          <div className={styles.featureText}>
+            <h3>Inventory Tracking</h3>
+            <p>Monitor and adjust inventory levels to avoid stockouts.</p>
+          </div>
+          <div className={styles.featureImage}>
+            <Image src="/inventory-tracking.png" alt="Inventory Tracking" width={100} height={100} />
+          </div>
         </div>
+        
         <div className={styles.featureItem}>
-          <h3>Seamless UI</h3>
-          <p>Analytics and charts to visualize stock levels.</p>
+          <div className={styles.featureText}>
+            <h3>Seamless UI</h3>
+            <p>Analytics and charts to visualize stock levels.</p>
+          </div>
+          <div className={styles.featureImage}>
+            <Image src="/seamless-ui.png" alt="Seamless UI" width={100} height={100} />
+          </div>
         </div>
-        <div className={`${styles.featureItem} ${styles.aiFeature}`}>
-          <h3>AI Voice Recognition</h3>
-          <p>Add, update, or remove inventory using voice commands.</p>
+        
+        <div className={styles.featureItem}>
+          <div className={styles.featureText}>
+            <h3>AI Voice Recognition</h3>
+            <p>Add, update, or remove inventory using voice commands.</p>
+          </div>
+          <div className={styles.featureImage}>
+            <Image src="/ai-voice.png" alt="AI Voice Recognition" width={100} height={100} />
+          </div>
         </div>
       </section>
+
+
 
       {/* Use Cases Section */}
       <section className={styles.useCases}>

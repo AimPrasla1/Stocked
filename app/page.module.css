@@ -10,8 +10,6 @@
   }
 }
 
-
-/* Header Section */
 /* Header Section */
 .header {
   display: flex;
@@ -24,16 +22,16 @@
   width: 100%;
   z-index: 1000;
   padding-top: 30px;
-  animation: fadeIn 1.5s ease-in-out;
+  animation: fadeIn 1.8s ease-in-out;
   padding-bottom: 30px;
   background-color: #151718;
 }
 
 /* Logo stays on the left */
 .logo img {
-  width: 150px;
+  width: 45px;
   height: auto;
-  padding-left: 5%;
+  padding-left: 60px;
 }
 
 /* Move navigation buttons to the right side of the header */
@@ -65,51 +63,101 @@
 
 /* Hero Section */
 .hero {
-  min-height: 70vh;
+  min-height: 40vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between; /* Distributes space between text and image */
   align-items: center;
-  text-align: center;
-  padding: 150px 20px;
+  padding: 130px 20px;
   color: white;
-  animation: fadeIn 2s ease-in-out;
+  background-color: #151718;
+  padding-bottom: 110px;
 }
 
-.hero h1 {
+/* Left-aligned text */
+.heroText {
+  flex: 1;
+  text-align: left;
+  padding-right: 25px; /* Adds space between text and image */
+  padding-left: 5%;
+  color: #ffffff;
+}
+
+.heroText h1 {
   font-size: 3rem;
-  animation: fadeIn 2.2s ease-in-out;
-  color: #151718;
+  animation: fadeIn 1.8s ease-in-out;
+  color: #ffffff;
 }
 
-.hero p {
+.heroText p {
   font-size: 1.2rem;
   margin-top: 20px;
-  animation: fadeIn 2.4s ease-in-out;
-  color: #151718;
+  animation: fadeIn 1.8s ease-in-out;
+  color: #ffffff;
 }
 
-.signUpButton {
+/* Right-aligned image */
+.heroImage {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; /* Aligns image to the right */
+  animation: fadeIn 1.8s ease-in-out;
+}
+
+.heroImage img {
+  max-width: 100%;
+  height: auto;
+  width: 700px;
+  transition: transform 0.5s ease; /* Smooth zoom animation */
+}
+
+.heroImage img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Group sign-in and sign-up buttons together */
+.buttonGroup {
+  display: flex;
+  gap: 20px; /* Adds space between buttons */
   margin-top: 40px;
+}
+
+/* Sign In Button */
+.signInButton {
   padding: 12px 30px;
   background-color: transparent;
-  color: #151718;
+  color: #ffffff;
   border: 2px solid transparent;
   border-radius: 50px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  animation: fadeIn 2.6s ease-in-out;
-  border-color: #fcd12a;
+  border-color: #38aca9; /* Green border for Sign In */
+}
+
+.signInButton:hover {
+  background-color: #38aca9; /* Green background on hover */
+  color: white;
+}
+
+/* Sign Up Button */
+.signUpButton {
+  padding: 12px 30px;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-color: #fcd12a; /* Yellow border for Sign Up */
 }
 
 .signUpButton:hover {
-  background-color: #fcd12a;
+  background-color: #fcd12a; /* Yellow background on hover */
   color: white;
 }
 
 /* Features and Use Cases Sections */
-/* Parent container for features and use cases */
 .features, .useCases {
   display: flex;
   justify-content: center; /* Centers the items horizontally */
@@ -120,70 +168,61 @@
 }
 
 /* Feature and Use Case Items */
-.featureItem, .useCaseItem {
-  display: flex; /* Enables flexbox for inner content */
-  justify-content: center; /* Horizontally center the text */
-  align-items: center; /* Vertically center the text */
-  flex-direction: column; /* Stack text elements vertically */
-  background-color: rgb(255, 225, 106); /* Yellow background with 80% opacity */
-  background-size: 200% 200%; /* Ensures smooth background transitions */
+.featureItem {
+  display: flex;
+  justify-content: space-between; /* Align text on the left, image on the right */
+  align-items: center;
+  background-color: transparent; /* Background color */
   padding: 40px;
   margin-bottom: 50px;
   border-radius: 20px;
-  border: 2px solid rgba(255, 210, 31, 0); /* Initially transparent yellow border */
+  border: 2px solid rgba(255, 210, 31, 0); /* Initially transparent border */
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.6s ease, transform 0.6s ease;
-  animation: gradientMove 6s linear infinite; /* Smooth infinite loop */
-
-  width: 80%; /* Span the boxes to 80% of the container width */
-  max-width: 800px; /* Optionally, set a maximum width to limit how wide they can get */
-  height: 25vh; /* Set height */
-  text-align: center; /* Ensure the text inside is centered */
+  width: 80%;
+  max-width: 800px;
+  height: auto;
+  text-align: left;
 }
 
+/* Align text to the left */
+.featureText {
+  flex: 1;
+  text-align: left;
+  color: #ffffff;
+}
 
+/* Align image to the right */
+.featureImage {
+  flex-shrink: 0; /* Prevent the image from shrinking */
+  margin-left: 20px; /* Space between text and image */
+}
 
-.features h2 {
-  margin-bottom: 100px;
-  color: white;
+.featureItem h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.featureItem p {
+  font-size: 1rem;
+  margin: 0; /* Remove default margins */
+  color: #ffffff;
+}
+
+/* Hover effect */
+.featureItem:hover {
+  border-color: rgba(252, 209, 42, 1); /* Yellow border on hover */
+  transition: border-color 0.3s ease-in-out;
 }
 
 .features{
   background-color: #151718;
 }
 
-/* Align text inside the feature and use case items */
-.featureItem h3, .useCaseItem h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
-.featureItem p, .useCaseItem p {
-  font-size: 1rem;
-  margin: 0; /* Remove default margins to ensure proper vertical alignment */
-}
-
-.useCases{
-  padding-top: 75px;
-  background-color: #151718
-}
-
-.useCases h2{
-  color: white;
-}
-
-
-/* Visible class triggered by scroll */
-.featureItem.visible, .useCaseItem.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Smooth yellow border fade-in on hover */
-.featureItem:hover, .useCaseItem:hover {
-  border-color: rgba(252, 209, 42, 1); /* Yellow border fades in */
-  transition: border-color 0.3s ease-in-out;
+.features h2{
+  color: #ffffff;
 }
 
 /* Use Cases grid */
@@ -200,7 +239,6 @@
   width: 30%;
   text-align: center;
   padding: 40px;
- 
 }
 
 /* Footer Section */
@@ -242,4 +280,12 @@
 .visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.gradientText {
+  background: linear-gradient(90deg, #38aca9, #fcd12a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
